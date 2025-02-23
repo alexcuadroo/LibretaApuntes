@@ -1,0 +1,342 @@
+html, body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column; 
+    --fuente-body: 'Arial','Roboto', sans-serif;
+    --color-light-1: #f4f7f6;
+    --color-light-2: #4b4b4b;
+    --color-light-3: #7d7d7d;
+    --color-dark-1: #05002d;
+    --color-dark-2: #202020;
+    --color-dark-3: #120b4a;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-body);
+    background-color: var(--color-light-1);
+    color: #333;
+    line-height: 1.6;
+    scrollbar-width: thin;
+}
+body.dark {
+    background-color: var(--color-dark-1);
+    color: #ffffff;
+}
+
+.header {
+    background-color: #4CAF50;
+    padding: 12px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.dark .header {
+    background-color: var(--color-dark-3);
+}
+
+.header__title {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.header__nav {
+    display: flex;
+    gap: 15px;
+    font-weight: bold;
+}
+#theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 3px;
+    cursor: pointer;
+    transition: ease 0.3;
+    &:hover {
+        transform: scale(1.18);
+    }
+}
+.header__link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.header__link:hover {
+    color: #b9d7ff;
+    transform: scaleX(1.1);
+}
+
+.separator {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999; 
+  display: none;
+}
+
+.banner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.banner h2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #888;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+.banner h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.banner p {
+  font-size: 20px;
+  color: #666;
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+    max-width: 85vw;
+    margin: auto;
+}
+
+footer {
+    background-color: #4CAF50; 
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    width: 100%;
+    font-size: small;
+}
+footer a {
+    color: white;
+    opacity: 0.8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    text-decoration: underline dotted;
+    &:hover {
+        color: #8ccdff;
+    }
+}
+.dark footer {
+    background-color: var(--color-dark-3);
+}
+.notes, .files {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-height: 85vh;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #4CAF50 #f4f7f6;
+}
+.notes {
+    min-width: 40vw;
+}
+.files {
+    min-width: 30vw;
+}
+.dark .notes, .dark .files {
+    background-color: #120b4a;
+    scrollbar-color: #f4f7f6 #120b4a;
+}
+
+.notes ul, .file-list {
+    list-style: none;
+}
+
+.notes ul {
+    padding-left: 0;
+}
+
+.notes .note-item, .file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.note-item:hover, .file-item:hover {
+    background-color: #f1f1f1;
+}
+
+.note-content {
+    max-width: 80%;
+}
+
+.note__title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.dark .note__title {
+    color: var(--color-dark-3);
+}
+
+.note__text {
+    font-size: 14px;
+    color: var(--color-light-2);
+    margin-bottom: 10px;
+}
+
+.note__date {
+    font-size: 12px;
+    color: var(--color-light-3);
+}
+
+.note__delete-button, .file__form button {
+    background-color: #f44336;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.note__delete-button:hover, .file__form button:hover {
+    background-color: #d32f2f;
+}
+.note-editar-button {
+    background-color: #4CAF50;
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    &:hover {
+        background-color: #0F4D0F;
+    }
+}
+
+.file__form {
+    margin-left: 10px;
+}
+.file__link {
+    color: #0048ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    &:hover {
+        color: #0026b3;
+        text-decoration: underline;
+    }
+}
+
+.section__title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+.dark .section__title {
+    color: var(--color-light-1);
+}
+
+.notes p, .files p {
+    font-size: 16px;
+    color: #888;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.dark .notes p, .dark .files p {
+    color: var(--color-light-3);
+}
+
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        max-width: 95dvw;
+    }
+    .header__nav {
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+        line-height: 1;
+    }
+    #theme-toggle {
+        padding: 9px;
+        font-size: small;
+    }
+    .header__title {
+        display: none;
+    }
+    .notes {
+        max-height: 60vh;
+        width: 96vw;
+    }
+    .files {
+        width: 96vw;
+    }
+}
+@media (min-width: 900px) {
+    .notes {
+        max-width: 66vw;
+    }
+    .files {
+        max-width: 30vw;
+    }
+}
