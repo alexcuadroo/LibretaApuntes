@@ -9,7 +9,7 @@ function isLoggedIn()
 function redirectIfNotLoggedIn()
 {
     if (!isLoggedIn()) {
-        header("Location: ./login");
+        header("Location: /login");
         exit;
     }
 }

@@ -2,7 +2,7 @@
 session_start();
 session_set_cookie_params(10080);
 require '../includes/db.php';
-require 'auth.php';
+require '../includes/auth.php';
 
 redirectIfNotLoggedIn();
 
